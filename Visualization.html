@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!--
+|
+--->
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <title>Stellaris Galaxy Visualization</title>
+    <script type="text/javascript" src="./lib/d3%20v3.5.5/d3.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style type="text/css">
+
+        body {
+            background: black;
+        }
+
+        .nodeshape {
+            stroke: white;
+            stroke-width: 1px;
+            fill: #FFFFFF;
+        }
+        .nodeshape:hover {
+            stroke: red;
+        }
+
+        .nodetext {
+            font-family: "Roboto", sans-serif;
+            font-size: 12px;
+            fill: white;
+            border: 1px solid white;
+            z-index: 99;
+        }
+
+        .nodeinfobox {
+            fill: darkblue;
+        }
+
+        .link {
+            stroke: #555555;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+
+        /** load JSON data **/
+        d3.json("./JSON%20Data/superData.json", function (data) {
+            console.log(data);
+
+            /** setup SVG parameters **/
+            const width = 0.95 * self.innerWidth;
+            const height = 0.95 * self.innerWidth;
+            const margin = 20;
+            const chartWidth = width - 2 * margin;
+            const chartHeight = chartWidth;         // chart is square
+
+            /** define scale functions **
+             *
+             * Scale to map System coordinates ~[-500, 500] inside chart height & width
+             *
+             **/
+            const xScale = d3.scale.linear()
+                .range([margin, margin + chartWidth - 1])
+                .domain([500, -500]);
+            const yScale = d3.scale.linear()
+                .range([margin, margin + chartWidth - 1])
+                .domain([-500, 500]);
+            console.log("xScale, yScale: ", xScale, yScale);
+
+            /** draw SVG **/
+            const svg = d3.select("body")
+                .append("center")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            /** create Link Array for Layout **
+             *
+             * Link Array needed in format:
+             *  [
+             *      {
+                 *          "source": <system index>,
+                 *          "target": <system.hyperlane[j] value>
+                 *      }
+             *      ...
+             *  ]
+             **/
+            const links = [];
+            data.system.forEach(function (e, i) {       // loop through system elements
+                e.hyperlanes.forEach(function (f, j) {  // loop through hyperlane elements of each system
+                    links.push({                        // for each hyperlane element add new element to Links list
+                        source: i,
+                        target: parseInt(f)
+                    });
+                });
+            });
+            console.log("Links: ", links);
+            console.log("Nodes: ", data.system);
+
+            /** create Layout **/
+            let force = d3.layout.force()
+                .nodes(data.system)
+                .links(links)
+                .size([chartWidth, chartHeight])
+                .charge(-120)
+                .linkDistance(30)
+                .start();
+            console.log("Layout created");
+
+            /********************************************************************************************************* draw the graph edges */
+            let link = svg.selectAll(".link")
+                .data(links)
+                .enter()
+                .append("line")
+                .attr("class", "link");
+            console.log("Links created");
+
+            /********************************************************************************************************* draw the graph nodes */
+            let node = svg.selectAll("g")
+                .data(data.system)
+                .enter()
+                .append("g")
+                .attr("class", "node");
+            node.append("title")                                                                                    // add title tooltip
+                .text(function (d) {
+                    return d.name;
+                });
+            node.append("circle")                                                                                   // draw node circle
+                .attr("class", "nodeshape")
+                .attr("r", 5)
+                .on("click", click);
+            node.append("text")                                                                                     // add label (Name)
+                .attr("class", "nodetext")
+                .text(function (d) {
+
+                    return d.name;
+                })
+                .text(function (d) {
+                    d.textwidth = this.getComputedTextLength();                                                     // compute Text length for Textbox
+                });
+            node = svg.selectAll("g");
+            node.append("rect")                                                                                     // add Frame for label (readability)
+                .attr("class", "nodeinfobox")
+                .attr("width", function (d) {
+                    return d.textwidth + 10;
+                })
+                .attr("height", 20)
+                .attr("rx", 5)
+                .attr("ry", 5)
+                .style("visibility", "hidden");
+            node.append("text")                                                                                     // reappend Text
+                .attr("class", "nodetext")
+                .text(function (d) {
+                    return d.name;
+                })
+                .attr("dy", 14)
+                .attr("dx", 5)
+                .style("visibility", "hidden");
+
+            console.log("Nodes created");
+
+            // define what to do on each tick of the animation
+            force.on("tick", function () {
+                link.attr("x1", function (d) {
+                    return xScale(d.source.coordinate.x);
+                })
+                    .attr("y1", function (d) {
+                        return yScale(d.source.coordinate.y);
+                    })
+                    .attr("x2", function (d) {
+                        return xScale(d.target.coordinate.x);
+                    })
+                    .attr("y2", function (d) {
+                        return yScale(d.target.coordinate.y);
+                    });
+
+                node.attr("transform", function (d) {
+                    return "translate(" + xScale(d.coordinate.x) + ", " + yScale(d.coordinate.y) + ")";
+                });
+            });
+            console.log("on tick set up")
+        });
+
+        // TODO: zoom capability
+        /*
+        let zoom_handler = d3.behavior.zoom()
+            .on("zoom", zoom_actions);
+        function zoom_actions() {
+            node.attr("transform", d3.event.transform)
+        }
+        */
+        // function to update
+
+        // function to select Nodes
+        let selectedNode;
+
+        /** Click function to mark selected Node and show name **
+         * childNode[1] = circle element of Node -> toggle stroke red/white
+         * childNode[3] = rect element of Node -> toggle visible/hidden
+         * childNode[4] = text element of Node -> toggle visible/hidden
+         **/
+        function click() {
+            if (!selectedNode){
+                selectedNode = this.parentNode;
+                d3.select(selectedNode.childNodes[1]).style("stroke", "red");
+                d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
+                d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
+                d3.select(selectedNode);
+            }
+            else {
+                d3.select(selectedNode.childNodes[1]).style("stroke", "white");
+                d3.select(selectedNode.childNodes[3]).style("visibility", "hidden");
+                d3.select(selectedNode.childNodes[4]).style("visibility", "hidden");
+                selectedNode = this.parentNode;
+                d3.select(selectedNode.childNodes[1]).style("stroke", "red");
+                d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
+                d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
+                d3.select(parentNode);
+            }
+            console.log("selected Node: " + selectedNode);
+        }
+    </script>
+</body>
+</html>
