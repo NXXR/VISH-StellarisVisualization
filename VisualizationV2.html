@@ -63,6 +63,13 @@
         .link {
             stroke: #555555;
         }
+
+        .SystemInfoBox{
+            font-family: "Roboto", sans-serif;
+            font-size: 12px;
+            border-left: darkblue solid 5px;
+            padding-left: 5px;
+        }
     </style>
 </head>
 <body>
@@ -71,7 +78,12 @@
         <input type="range" min="2100" max="2200" value="2100" class="slider" id="slider">
         <p>Year: <span id="sliderValue"></span></p>
     </div>
-    <div id="Infobox"></div>
+    <div class="SystemInfoBox">
+        <div id="InfoBox_Name"></div>
+        <div id="InfoBox_Planets"></div>
+        <div id="InfoBox_Starbase"></div>
+        <div id="InfoBox_Bypasses"></div>
+    </div>
 
     <script type="module">
         /** import JSON data **/
@@ -175,7 +187,9 @@
                 node.append("circle")
                     .attr("class", "nodeshape")
                     .attr("r", 5)
-                    .on("click", click);
+                    .on("click", function () {
+                        selectSystem(this.parentNode);
+                    });
                 // add label (Name)
                 node.append("text")
                     .attr("class", "nodetext")
@@ -206,33 +220,31 @@
                     .style("visibility", "hidden");
             }
 
-            /** Click function to mark selected Node and show name **
-            * childNode[1] = circle element of Node -> toggle stroke red/white
-            * childNode[3] = rect element of Node -> toggle visible/hidden
-            * childNode[4] = text element of Node -> toggle visible/hidden
-            **/
+            /** Select function to mark selected Node and show name **/
             let selectedNode;
-            function click() {
-                if (!selectedNode){
-                    selectedNode = this.parentNode;
-                    d3.select(selectedNode.childNodes[1]).style("stroke", "red");
-                    d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
-                    d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
-                    selectedNode.parentNode.appendChild(selectedNode);
-                }
-                else {
+            function selectSystem(selNode) {
+                // TODO: fix Index Bug on Year change
+                // unselect old Node if it exists
+                if (selectedNode){
                     d3.select(selectedNode.childNodes[1]).style("stroke", "white");
                     d3.select(selectedNode.childNodes[3]).style("visibility", "hidden");
                     d3.select(selectedNode.childNodes[4]).style("visibility", "hidden");
-                    selectedNode = this.parentNode;
-                    d3.select(selectedNode.childNodes[1]).style("stroke", "red");
-                    d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
-                    d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
-                    selectedNode.parentNode.appendChild(selectedNode);
                 }
+                // update selected Node
+                selectedNode = selNode;
+                console.log("selected: ", selectedNode);
+                // highlight new Node
+                d3.select(selectedNode.childNodes[1]).style("stroke", "red");
+                d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
+                d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
+                // re-append selected Node to move it in front
+                selectedNode.parentNode.appendChild(selectedNode);
+                // update System Info Box
+                updateInfobox();
             }
 
             /** setup slider for year **/
+            let currentYear;
             let sliderMin = parseInt(data[0].date);
             let sliderMax = parseInt(data[data.length-1].date);
             d3.select("#slider")
@@ -243,9 +255,30 @@
             /** slider update function **/
             slider.oninput = function () {
                 sliderDisplay.innerHTML = slider.value;
-                drawStarChart(parseInt(slider.value));
+                currentYear = parseInt(slider.value);
+                drawStarChart(currentYear);
+                updateInfobox();
             };
 
+            /** function to update System Info Box **/
+            function updateInfobox() {
+                // update System name
+                d3.select("#InfoBox_Name").text(
+                    "System:\t\t" + selectedNode.__data__.name
+                );
+                // update Planets
+                d3.select("#InfoBox_Planets");
+                // update Starbase
+                d3.select("#InfoBox_Starbase").text(function () {
+                    let starbaseIndex = selectedNode.__data__.starbase;
+                    if (starbaseIndex){
+                        data
+                    }
+                });
+                // update Bypasses
+                d3.select("#InfoBox_Bypasses").text();
+
+            }
 
 
         })
