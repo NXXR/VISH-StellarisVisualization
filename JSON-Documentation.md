@@ -2,7 +2,7 @@ JSON Documentation
 ==================
 Documentation of the JSON structure for further use.
 
-Each file contains the status of the galaxy at the beginning of the year.
+Each element contains the status of the galaxy at the beginning of the year.
 
 - `date`                *Date of the status*
 - `system`              *Sublist of systems*

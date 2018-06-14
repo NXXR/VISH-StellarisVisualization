@@ -86,7 +86,7 @@
                 .attr("height", svgSize);
 
             // initialize variables for Chart
-            const margin = 20;
+            const margin = 10;
             const chartSize = svgSize - 2 * margin;
 
             /** define scale functions **
@@ -174,8 +174,8 @@
                 // draw node circle
                 node.append("circle")
                     .attr("class", "nodeshape")
-                    .attr("r", 5);
-                    // TODO: .on("click", click);
+                    .attr("r", 5)
+                    .on("click", click);
                 // add label (Name)
                 node.append("text")
                     .attr("class", "nodetext")
@@ -204,6 +204,32 @@
                     .attr("dy", 14)
                     .attr("dx", 5)
                     .style("visibility", "hidden");
+            }
+
+            /** Click function to mark selected Node and show name **
+            * childNode[1] = circle element of Node -> toggle stroke red/white
+            * childNode[3] = rect element of Node -> toggle visible/hidden
+            * childNode[4] = text element of Node -> toggle visible/hidden
+            **/
+            let selectedNode;
+            function click() {
+                if (!selectedNode){
+                    selectedNode = this.parentNode;
+                    d3.select(selectedNode.childNodes[1]).style("stroke", "red");
+                    d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
+                    d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
+                    selectedNode.parentNode.appendChild(selectedNode);
+                }
+                else {
+                    d3.select(selectedNode.childNodes[1]).style("stroke", "white");
+                    d3.select(selectedNode.childNodes[3]).style("visibility", "hidden");
+                    d3.select(selectedNode.childNodes[4]).style("visibility", "hidden");
+                    selectedNode = this.parentNode;
+                    d3.select(selectedNode.childNodes[1]).style("stroke", "red");
+                    d3.select(selectedNode.childNodes[3]).style("visibility", "visible");
+                    d3.select(selectedNode.childNodes[4]).style("visibility", "visible");
+                    selectedNode.parentNode.appendChild(selectedNode);
+                }
             }
 
             /** setup slider for year **/
