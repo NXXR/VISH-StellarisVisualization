@@ -22,3 +22,8 @@ This project already comes with a sample superData.json so you can immediately s
     - "Starbases" paints starbases according to their level into the galaxy (white to red)
     
 - The Infobox at the bottom shows available Info on the selected System (Systems can be selected and deselected by clicking on them).
+- Systems can be Compared by selecting one normally and the second one while shift is pressed down.
+
+#### Additional Information ####
+- The json data structure documentation can be found in the JSON-Documentation.md file.
+- The used Regular Expressions can be found in the RegExLib.py file
