@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="43718d8c-1ab1-4950-b4c3-f54d38925b87" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JSON-Documentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/JSON-Documentation.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/VisualizationV2.html" beforeDir="false" afterPath="$PROJECT_DIR$/VisualizationV2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/processAllSaves.py" beforeDir="false" afterPath="$PROJECT_DIR$/processAllSaves.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,42 +18,24 @@
     <SUITE FILE_PATH="coverage/VISH_StellarisVisualization$stellarisParseSave.coverage" NAME="stellarisParseSave Coverage Results" MODIFIED="1527794243448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="VisualizationV2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VisualizationV2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+            <state relative-caret-position="7021">
+              <caret line="413" column="37" lean-forward="true" selection-start-line="413" selection-start-column="37" selection-end-line="413" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegExLib.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegExLib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parseSave.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parseSave.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2386">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="processAllSaves.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/processAllSaves.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-              <folding>
-                <element signature="e#82#91#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="JSON-Documentation.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JSON-Documentation.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="68">
+                <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -64,19 +44,10 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="272">
-                <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <first_editor relative-caret-position="408">
+                <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="superData.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/JSON Data/superData.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -109,9 +80,9 @@
         <option value="$PROJECT_DIR$/Visualization.html" />
         <option value="$PROJECT_DIR$/RegExLib.py" />
         <option value="$PROJECT_DIR$/Visualization2.0.html" />
-        <option value="$PROJECT_DIR$/VisualizationV2.html" />
         <option value="$PROJECT_DIR$/processAllSaves.py" />
         <option value="$PROJECT_DIR$/JSON-Documentation.md" />
+        <option value="$PROJECT_DIR$/VisualizationV2.html" />
         <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
@@ -126,8 +97,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="113" />
-    <option name="width" value="1281" />
+    <option name="x" value="21" />
+    <option name="y" value="-18" />
+    <option name="width" value="1280" />
     <option name="height" value="911" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -139,7 +111,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,10 +128,15 @@
               <item name="VISH-StellarisVisualization" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="VISH-StellarisVisualization" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -346,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528932241823</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added comments&#10;added README.md&#10;added click-selection for nodes&#10;      + Nodes are now re-appended to move in front">
+      <created>1529005503661</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1529005503661</updated>
+    </task>
+    <task id="LOCAL-00016" summary="additions to the visualization">
+      <created>1529019224005</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1529019224005</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -362,15 +352,16 @@
     <frame x="-8" y="-8" width="1296" height="1040" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.0" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50078124" side_tool="true" weight="0.32937366" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32988507" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921876" weight="0.32937366" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49921876" weight="0.32937366" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1296875" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -382,30 +373,29 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1296875" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32988507" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921876" weight="0.32937366" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1296875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921876" weight="0.32937366" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49921876" weight="0.32937366" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50078124" side_tool="true" weight="0.32937366" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32988507" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32937366" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,7 +419,9 @@
     <MESSAGE value="visualization basis added&#10;draws nodes &amp; egdges (systems &amp; hyperlanes)" />
     <MESSAGE value="superscript added to parse all saves&#10;merging all saves into superfile" />
     <MESSAGE value="superscript added to parse all saves&#10;merging all saves into superfile&#10;new Visualization.html (V2)&#10;slider implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="superscript added to parse all saves&#10;merging all saves into superfile&#10;new Visualization.html (V2)&#10;slider implemented" />
+    <MESSAGE value="added comments&#10;added README.md&#10;added click-selection for nodes&#10;      + Nodes are now re-appended to move in front" />
+    <MESSAGE value="additions to the visualization" />
+    <option name="LAST_COMMIT_MESSAGE" value="additions to the visualization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -622,13 +614,6 @@
     <entry file="file://$PROJECT_DIR$/JSON Data/2300.01.01.json" />
     <entry file="file://$PROJECT_DIR$/JSON Data/2300.json" />
     <entry file="file://$PROJECT_DIR$/JSON Data/2310.json" />
-    <entry file="file://$PROJECT_DIR$/VisualizationV2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Visualization.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="967">
@@ -636,17 +621,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JSON Data/superData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parseSave.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2386">
           <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/processAllSaves.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegExLib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JSON Data/superData.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-27209">
+          <caret line="15830" column="9" selection-start-line="15830" selection-start-column="9" selection-end-line="15830" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -660,28 +659,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegExLib.py">
+    <entry file="file://$PROJECT_DIR$/VisualizationV2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/processAllSaves.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="10" column="51" lean-forward="true" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding>
-            <element signature="e#82#91#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="7021">
+          <caret line="413" column="37" lean-forward="true" selection-start-line="413" selection-start-column="37" selection-end-line="413" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="272">
-            <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <first_editor relative-caret-position="408">
+            <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
           </first_editor>
           <second_editor />
         </state>

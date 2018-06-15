@@ -6,8 +6,18 @@
     <script type="text/javascript" src="./lib/d3%20v3.5.5/d3.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style type="text/css">
-        .slidecontainer {
-            width: 100%;
+        .yearSliderContainer {
+            width: 95%;
+            border-bottom: gray solid 1px;
+            margin-bottom: 5px;
+        }
+
+        .nodeRadioContainer label{
+            vertical-align: top;
+        }
+        .nodeRadioContainer input[type="radio"]{
+            margin-top: 1px;
+            vertical-align: top;
         }
 
         .slider {
@@ -36,6 +46,8 @@
 
         body {
             background: black;
+            font-family: "Roboto", sans-serif;
+            font-size: 12px;
             color: white;
         }
 
@@ -49,8 +61,6 @@
         }
 
         .nodetext {
-            font-family: "Roboto", sans-serif;
-            font-size: 12px;
             fill: white;
             border: 1px solid white;
             z-index: 99;
@@ -65,19 +75,33 @@
         }
 
         .SystemInfoBox{
-            font-family: "Roboto", sans-serif;
-            font-size: 12px;
             border-left: darkblue solid 5px;
+            border-top: gray solid 1px;
             padding-left: 5px;
+            margin-top: 15px;
+            padding-top: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- SVG for the Star Chart -->
     <svg id="Chart" width="100%"></svg>
-    <div class="slidecontainer">
+    <!-- DIV for the Year Slider -->
+    <div class="yearSliderContainer">
         <input type="range" min="2100" max="2200" value="2100" class="slider" id="slider">
         <p>Year: <span id="sliderValue"></span></p>
     </div>
+    <!-- TODO: DIV for the Node Modification Radio Buttons -->
+    <div class="nodeRadioContainer">
+        Node Color Modifications:
+        <form>
+            <input type="radio" name="nodeColMod" value="none" checked><label>None</label>
+            <input type="radio" name="nodeColMod" value="countries"><label>Countries</label>
+            <input type="radio" name="nodeColMod" value="starbases"><label>Starbases</label>
+        </form>
+    </div>
+    <!-->
+    <!-- DIV for the System Info Box -->
     <div class="SystemInfoBox">
         <div id="InfoBox_Name"></div>
         <div id="InfoBox_Planets"></div>
@@ -112,16 +136,74 @@
                 .domain([-500, 500]);
             console.log("xScale, yScale: ", xScale, yScale);
 
-            /** create mapping to find index by date **
-             * indexMap.indexOf(<date>) returns index in data
+            /** define a color scale functions **
+             * ColorCategory:
+             * lookup for different country colors (taken from https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/)
+             * getCatColor:
+             * function returns color for index, returns white for all but the top 15
+             * getSBLevelColor:
+             * function returns color for Starbase level, returns white for others (taken from http://colorbrewer2.org/#type=sequential&scheme=Reds&n=6)
              **/
-            const indexMap = data.map(function (d) {
+            const ColorCategory = [
+                "#e6194b", // Red
+                "#3cb44b", // Green
+                "#ffe119", // Yellow
+                "#0082c8", // Blue
+                "#f58231", // Orange
+                "#911eb4", // Purple
+                "#46f0f0", // Cyan
+                "#f032e6", // Magenta
+                "#d2f53c", // Lime
+                "#fabebe", // Pink
+                "#008080", // Teal
+                "#aa6e28", // Brown
+                "#800000", // Maroon
+                "#aaffc3", // Mint
+                "#808000", // Olive
+                "#ffffff" // White for all others (minor factions etc)
+            ];
+            // function to get color for indices 0-14, else returns white
+            function getCatColor(index) {
+                if (index >= 0 && index < 15) return ColorCategory[index];
+                else return ColorCategory[15];
+            }
+            // function to get color for starbase level
+            function getSBLevelColor(level) {
+                switch (level){
+                    case "outpost":
+                        return "#fcbba1";
+                    case "starport":
+                        return "#fc9272";
+                    case "starhold":
+                        return "#fb6a4a";
+                    case "starfortress":
+                        return "#de2d26";
+                    case "citadel":
+                        return "#a50f15";
+                    default:
+                        return "#ffffff";
+                }
+            }
+
+
+
+            /** create mapping to find year index by date value **
+             * yeariMap.indexOf(<date>) returns index of year in data
+             **/
+            const yeariMap = data.map(function (d) {
                 return parseInt(d.date);
             });
 
             /** Draw Function for Chart **/
             function drawStarChart(year) {
-                let yindex = indexMap.indexOf(year);
+                // deleting existing Graph before redraw
+                let nodeToClear = document.getElementById("Chart");
+                while (nodeToClear.firstChild){
+                    nodeToClear.removeChild(nodeToClear.firstChild);
+                }
+
+                // draw new Chart
+                let yindex = yeariMap.indexOf(year);
                 console.log("drawing year: " + year + "(" + yindex + ")");
                 /** create Link Array for Layout **
                 * Format:
@@ -175,6 +257,10 @@
                     .enter()
                     .append("g")
                     .attr("class", "node")
+                    // add id to nodes to find them by name
+                    .attr("id", function (d) {
+                        return "System_" + d.name;
+                    })
                     .attr("transform", function (d) {
                         return "translate(" + xScale(d.coordinate.x) + ", " + yScale(d.coordinate.y) + ")";
                     });
@@ -186,6 +272,28 @@
                 // draw node circle
                 node.append("circle")
                     .attr("class", "nodeshape")
+                    .style("fill", function (d) {
+                        // get starbase in system and find owner
+                        let starbaseIndex = parseInt(d.starbase);
+                        // switch case for the Node Color Modifications (Radio Buttons)
+                        switch (settingNodeCol){
+                            case "countries":
+                                if (starbaseIndex) {
+                                    let starbaseOwner = parseInt(data[yindex].starbase[starbaseIndex].owner);
+                                    return getCatColor(starbaseOwner);
+                                }
+                                else return "#000000"; // if no starbase in system, no owner
+                            case "starbases":
+                                if (starbaseIndex){
+                                    let starbaseLevel = data[yindex].starbase[starbaseIndex].level;
+                                    return getSBLevelColor(starbaseLevel);
+                                }
+                                else break; // break to default to white (nodeshape CSS class)
+
+                            default:
+                                break; // break to default to white (nodeshape CSS class)
+                        }
+                    })
                     .attr("r", 5)
                     .on("click", function () {
                         selectSystem(this.parentNode);
@@ -223,7 +331,7 @@
             /** Select function to mark selected Node and show name **/
             let selectedNode;
             function selectSystem(selNode) {
-                // TODO: fix Index Bug on Year change
+
                 // unselect old Node if it exists
                 if (selectedNode){
                     d3.select(selectedNode.childNodes[1]).style("stroke", "white");
@@ -231,6 +339,11 @@
                     d3.select(selectedNode.childNodes[4]).style("visibility", "hidden");
                 }
                 // update selected Node
+                if (selNode == null || selNode === selectedNode){
+                    // breakout if selNode is null or same node is clicked again (deselect)
+                    selectedNode = null;
+                    return;
+                }
                 selectedNode = selNode;
                 console.log("selected: ", selectedNode);
                 // highlight new Node
@@ -256,27 +369,75 @@
             slider.oninput = function () {
                 sliderDisplay.innerHTML = slider.value;
                 currentYear = parseInt(slider.value);
+                // save selected System by id if any selected
+                let previousSysID = null;
+                if (selectedNode) previousSysID = selectedNode.id;
+                // deselect System
+                selectSystem(null);
+                // redraw with new year
                 drawStarChart(currentYear);
+                // select previously selected system if any selected
+                if (previousSysID) selectSystem(document.getElementById(previousSysID));
+                // update Infobox after new selection
                 updateInfobox();
             };
 
+            //** TODO: setup radio buttons **/
+            let settingNodeCol = "none";
+            const radiosNodeCol = document.getElementsByName("nodeColMod");
+            radiosNodeCol.forEach(function (e) {
+                e.onchange = function () {
+                    settingNodeCol = this.value;
+                    // save selected System by id if any selected
+                    let previousSysID = null;
+                    if (selectedNode) previousSysID = selectedNode.id;
+                    // deselect System
+                    selectSystem(null);
+                    // redraw with new year
+                    drawStarChart(currentYear);
+                    // select previously selected system if any selected
+                    if (previousSysID) selectSystem(document.getElementById(previousSysID));
+                    // update Infobox after new selection
+                    updateInfobox();
+                }
+            });
+
             /** function to update System Info Box **/
             function updateInfobox() {
+                if (selectedNode == null) return;
                 // update System name
                 d3.select("#InfoBox_Name").text(
                     "System:\t\t" + selectedNode.__data__.name
                 );
                 // update Planets
                 d3.select("#InfoBox_Planets");
+                // TODO: Planet Infos
+
                 // update Starbase
                 d3.select("#InfoBox_Starbase").text(function () {
                     let starbaseIndex = selectedNode.__data__.starbase;
-                    if (starbaseIndex){
-                        data
+                    let starbaseLevel = "None";
+
+                    // return "None" if no starbase present
+                    if (!starbaseIndex) return "Starbase:\t\t" + starbaseLevel;
+                    else {
+                        // shorten reference to starbase element in starbase array in current year
+                        let starbaseData = data[yeariMap.indexOf(currentYear)].starbase[starbaseIndex];
+                        // gather starbase level
+                        starbaseLevel = starbaseData.level;
+                        starbaseLevel = starbaseLevel[0].toUpperCase() + starbaseLevel.substring(1);
+
+                        // TODO: gather owner name from country list (not yet parsed)
+
+                        return "Starbase:\t\t" + starbaseLevel;
                     }
+
+
                 });
                 // update Bypasses
-                d3.select("#InfoBox_Bypasses").text();
+                d3.select("#InfoBox_Bypasses").text(function () {
+                    // TODO: Bypass Info
+                });
 
             }
 

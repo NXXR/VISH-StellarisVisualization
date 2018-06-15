@@ -14,3 +14,11 @@ Stellaris Savegame Visualization
 
 #### Quickstart ####
 This project already comes with a sample superData.json so you can immediately start the Visualization.html to view the sample.
+
+#### How-To use the Visualization ####
+- The slider updates the chart with a particular year
+- The "Node Color Modification" Radio Buttons allow different coloration of the galaxy.
+    - "Countries" categorizes the systems into groups owned by a Country (first 14. Thereafter, minor factions are colored white).
+    - "Starbases" paints starbases according to their level into the galaxy (white to red)
+    
+- The Infobox at the bottom shows available Info on the selected System (Systems can be selected and deselected by clicking on them).
