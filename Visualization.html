@@ -114,15 +114,15 @@
     <div style="justify-content: space-around; display: flex">
         <div class="SystemInfoBox">
             <div id="InfoBox_Name"></div>
-            <div id="InfoBox_Planets"></div>
             <div id="InfoBox_Starbase"></div>
             <div id="InfoBox_Bypasses"></div>
+            <div id="InfoBox_Planets"></div>
         </div>
         <div class="SystemComparisonBox">
             <div id="ComparisonBox_Name"></div>
-            <div id="ComparisonBox_Planets"></div>
             <div id="ComparisonBox_Starbase"></div>
             <div id="ComparisonBox_Bypasses"></div>
+            <div id="ComparisonBox_Planets"></div>
         </div>
     </div>
 
@@ -469,6 +469,23 @@
                 d3.select("#InfoBox_Name").text(
                     "System: " + selectedNode.__data__.name
                 );
+                // update Starbase
+                d3.select("#InfoBox_Starbase").text(function () {
+                    let starbaseIndex = selectedNode.__data__.starbase;
+                    let starbaseLevel = "None";
+
+                    // return "None" if no starbase present
+                    if (!starbaseIndex) return "Starbase: " + starbaseLevel;
+                    else {
+                        // shorten reference to starbase element in starbase array in current year
+                        let starbaseData = data[yeariMap.indexOf(currentYear)].starbase[starbaseIndex];
+                        // gather starbase level
+                        starbaseLevel = starbaseData.level;
+                        starbaseLevel = starbaseLevel[0].toUpperCase() + starbaseLevel.substring(1);
+                        // TODO: gather owner name from country list (not yet parsed)
+                        return "Starbase:\t\t" + starbaseLevel;
+                    }
+                });
                 // update Planets
                 let planets = d3.select("#InfoBox_Planets")
                     .text("Planets:")
@@ -491,9 +508,20 @@
                                 "Size: "+planet.size+"("+planet.tile_count+" Tiles)";
                         }
                     });
+                // update Bypasses
+                d3.select("#InfoBox_Bypasses").text(function () {
+                    // TODO: Bypass Info (not completely parsed)
+                });
+
+                // COMPARE BOX
+                if (comparisonNode == null) return;
+                // update System name
+                d3.select("#ComparisonBox_Name").text(
+                    "System: " + comparisonNode.__data__.name
+                );
                 // update Starbase
-                d3.select("#InfoBox_Starbase").text(function () {
-                    let starbaseIndex = selectedNode.__data__.starbase;
+                d3.select("#ComparisonBox_Starbase").text(function () {
+                    let starbaseIndex = comparisonNode.__data__.starbase;
                     let starbaseLevel = "None";
 
                     // return "None" if no starbase present
@@ -508,17 +536,6 @@
                         return "Starbase:\t\t" + starbaseLevel;
                     }
                 });
-                // update Bypasses
-                d3.select("#InfoBox_Bypasses").text(function () {
-                    // TODO: Bypass Info (not completely parsed)
-                });
-
-                // COMPARE BOX
-                if (comparisonNode == null) return;
-                // update System name
-                d3.select("#ComparisonBox_Name").text(
-                    "System: " + comparisonNode.__data__.name
-                );
                 // update Planets
                 let cplanets = d3.select("#ComparisonBox_Planets")
                     .text("Planets:")
@@ -541,23 +558,6 @@
                                 "Size: "+planet.size+"("+planet.tile_count+" Tiles)";
                         }
                     });
-                // update Starbase
-                d3.select("#ComparisonBox_Starbase").text(function () {
-                    let starbaseIndex = comparisonNode.__data__.starbase;
-                    let starbaseLevel = "None";
-
-                    // return "None" if no starbase present
-                    if (!starbaseIndex) return "Starbase: " + starbaseLevel;
-                    else {
-                        // shorten reference to starbase element in starbase array in current year
-                        let starbaseData = data[yeariMap.indexOf(currentYear)].starbase[starbaseIndex];
-                        // gather starbase level
-                        starbaseLevel = starbaseData.level;
-                        starbaseLevel = starbaseLevel[0].toUpperCase() + starbaseLevel.substring(1);
-                        // TODO: gather owner name from country list (not yet parsed)
-                        return "Starbase:\t\t" + starbaseLevel;
-                    }
-                });
                 // update Bypasses
                 d3.select("#ComparisonBox_Bypasses").text(function () {
                     // TODO: Bypass Info (not completely parsed)

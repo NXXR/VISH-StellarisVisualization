@@ -21,8 +21,8 @@
       <file leaf-file-name="Visualization.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Visualization.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="562" column="64" selection-start-line="562" selection-start-column="64" selection-end-line="562" selection-end-column="64" />
+            <state relative-caret-position="507">
+              <caret line="487" column="19" selection-start-line="487" selection-start-column="19" selection-end-line="487" selection-end-column="19" />
               <folding>
                 <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -328,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529102207370</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="colonization date fixed&#10;   - (typo in variable &amp; reverse date yyyy.mm.dd -&gt; dd.mm.yyyy)">
+      <created>1529239178194</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1529239178194</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView">
@@ -415,7 +422,8 @@
     <MESSAGE value="additions to the visualization" />
     <MESSAGE value="Abgabe Version" />
     <MESSAGE value="comparison vanish on year/coloration change fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="comparison vanish on year/coloration change fixed" />
+    <MESSAGE value="colonization date fixed&#10;   - (typo in variable &amp; reverse date yyyy.mm.dd -&gt; dd.mm.yyyy)" />
+    <option name="LAST_COMMIT_MESSAGE" value="colonization date fixed&#10;   - (typo in variable &amp; reverse date yyyy.mm.dd -&gt; dd.mm.yyyy)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -666,8 +674,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Visualization.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="562" column="64" selection-start-line="562" selection-start-column="64" selection-end-line="562" selection-end-column="64" />
+        <state relative-caret-position="507">
+          <caret line="487" column="19" selection-start-line="487" selection-start-column="19" selection-end-line="487" selection-end-column="19" />
           <folding>
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
