@@ -18,7 +18,7 @@ Each element contains the status of the galaxy at the beginning of the year.
     - `bypasses`            *Array of bypass indices present in system*
 - `starbase`            *Sublist of starbases*
   - `index`               *Index of the starbase*
-    - `level`               *Starbase Level (Outpost | Starport | Starhold | Starfortress | Citadel)*
+    - `level`               *Starbase Level (Outpost / Starport / Starhold / Starfortress / Citadel)*
     - `system`              *Location of the starbase (system index)*
     - `owner`               *Owner of the starbase (Country index)*
 - `planet`              *Sublist of planets*
