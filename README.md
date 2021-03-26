@@ -2,6 +2,8 @@ Stellaris Savegame Visualization
 ================================
 ###### Version 1.0
 
+(PDF version of the visualization poster)[VISH-Sheet.pdf]
+
 #### How-To generate the Visualization ####
 1. Move the .sav files from your Stellaris savegame folder to the "Test Files" folder in this directory.
     - if you are using the SaveScoop.py script, you can also set the destination to the "Test Files" folder.
@@ -26,5 +28,5 @@ This project already comes with a sample superData.json so you can immediately s
 - Systems can be Compared by selecting one normally and the second one while shift is pressed down.
 
 #### Additional Information ####
-- The json data structure documentation can be found in the JSON-Documentation.md file.
-- The used Regular Expressions can be found in the RegExLib.py file
+- The json data structure documentation can be found in the (JSON-Documentation)[JSON-Documentation.md] file.
+- The used Regular Expressions can be found in the (RegExLib)[RegExLib.py] file
