@@ -10,10 +10,11 @@ Stellaris Savegame Visualization
     1. extract and rename the gamestate files from the .sav archive
     2. parse the gamestate into a .json file located in the new folder "JSON Data"
     3. combine the .json files in superData.json
-3. When the script is finished, you can launch the [Visualization.html](visualization.html)
+3. When the script is finished, you can launch the [Visualization.html](Visualization.html)
+    - (if no galayx map is diplayed use the slider to update the year)
 
 #### Quickstart ####
-This project already comes with a sample superData.json so you can immediately start the Visualization.html to view the sample.
+This project already comes with a sample superData.json so you can immediately start the [Visualization.html](Visualization.html) to view the sample.
 
 #### How-To use the Visualization ####
 - The slider updates the chart with a particular year
